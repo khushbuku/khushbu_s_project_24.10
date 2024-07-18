@@ -3,6 +3,7 @@ connection: "thelook"
 # include all the views
 include: "/views/**/*.view.lkml"
 
+
 datagroup: khushbu_s_project_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
   max_cache_age: "1 hour"
@@ -23,6 +24,7 @@ explore: billion_orders {
     relationship: many_to_one
   }
 }
+
 
 explore: connection_reg_r3 {}
 
@@ -109,6 +111,7 @@ explore: inventory_items {
 explore: map_layer {}
 
 explore: orders {
+
   join: users {
     type: left_outer
     sql_on: ${orders.user_id} = ${users.id} ;;
@@ -117,6 +120,11 @@ explore: orders {
 }
 
 explore: order_items {
+access_filter: {
+  field: orders.status
+  user_attribute: status_kk
+}
+
   join: orders {
     type: left_outer
     sql_on: ${order_items.order_id} = ${orders.id} ;;
