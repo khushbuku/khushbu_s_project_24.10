@@ -241,6 +241,13 @@ explore: test_space_in_column_name {}
 
 explore: users {}
 
+explore: +users {
+  view_name: users
+  sql_always_where: ${created_date}<= cast(dateadd(day, -1, getdate()) as date)
+    and ${created_date} >= dateadd(day, ${demo}, date({% date_start period_range %}))
+    ;;
+}
+
 explore: user_data {
   join: users {
     type: left_outer

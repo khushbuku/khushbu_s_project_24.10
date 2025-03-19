@@ -35,6 +35,10 @@ view: users {
     type: number
     sql: ${TABLE}.ID ;;
   }
+  dimension: demo {
+    type: number
+    sql: ${id} ;;
+  }
   dimension: last_name {
     type: string
     sql: ${TABLE}.LAST_NAME ;;
