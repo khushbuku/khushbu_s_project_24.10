@@ -47,5 +47,5 @@ view: order_items {
   }
   measure: count {
     type: count
-  }
+}
 }

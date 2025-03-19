@@ -63,4 +63,5 @@ view: users {
     type: count
     drill_fields: [last_name, first_name]
   }
-}
+
+  }

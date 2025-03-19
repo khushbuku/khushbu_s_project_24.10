@@ -54,5 +54,6 @@ view: inventory_items {
   measure: count {
     type: count
     drill_fields: [product_name]
-  }
+
+}
 }

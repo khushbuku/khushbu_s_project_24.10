@@ -40,5 +40,4 @@ view: products {
   measure: count {
     type: count
     drill_fields: [name]
-  }
-}
+}}
