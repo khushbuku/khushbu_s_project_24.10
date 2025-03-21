@@ -1,5 +1,7 @@
 view: products {
+
   sql_table_name: thelook_events.PRODUCTS ;;
+
 
   dimension: brand {
     type: string

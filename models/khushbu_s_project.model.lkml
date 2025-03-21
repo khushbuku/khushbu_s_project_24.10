@@ -9,8 +9,15 @@ datagroup: khushbu_s_project_default_datagroup {
   max_cache_age: "1 hour"
 }
 
-persist_with: khushbu_s_project_default_datagroup
+#persist_with: khushbu_s_project_default_datagroup
 
+explore: derive_table1 {}
+
+named_value_format:conditional_dollar_with_one_decimal{value_format: "[>=1000000000]$0.0,,,\" B\";[>=1000000]$0.0,,\" M\";[>=1000]$0.0,\" K\";[<1000]$0.0"}
+
+named_value_format: big_money {  value_format:"[>=1000000000]0.0,,,\"B\";[>=1000000]0.0,,\"M\";[>=1000]0.0,\"K\";0.0"}
+
+named_value_format:conditional_dollar_with_one_decimal_1{value_format: "[>=1000000000]$0.0,,,\" B\";[>=1000000]$0.0,,\" M\";[<1000]$0.0"}
 explore: billion_orders {
   join: orders {
     type: left_outer
@@ -118,6 +125,12 @@ explore: order_items {
 #   field: orders.status
 #   user_attribute: status_kk
 # }
+
+  join: sql_runner_query {
+    type: left_outer
+    sql: ${order_items.id} = ${sql_runner_query.order_items_id} ;;
+    relationship: many_to_one
+  }
 
   join: orders {
     type: left_outer

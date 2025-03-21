@@ -28,10 +28,22 @@ view: order_items {
     timeframes: [raw, time, date, week, month, quarter, year]
     sql: ${TABLE}.RETURNED_AT ;;
   }
+
   dimension: sale_price {
     type: number
     sql: ${TABLE}.SALE_PRICE ;;
   }
+
+  measure: sum_total_sales {
+    type: sum
+    sql: ${sale_price} ;;
+  }
+
+  # measure: avg_total_sales {
+  #   type: average
+  #   sql: ${sum_total_sales} ;;
+  # }
+
   dimension_group: shipped {
     type: time
     timeframes: [raw, time, date, week, month, quarter, year]
