@@ -1,4 +1,4 @@
-include: "/models/khushbu_s_project.model.lkml"
+#include: "/models/khushbu_s_project.model.lkml"
 view: derive_table1 {
 
   derived_table: {
