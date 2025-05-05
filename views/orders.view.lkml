@@ -22,7 +22,7 @@ view: orders {
     # hidden: yes
     sql: ${TABLE}.user_id ;;
   }
-  measure: test {
+  measure: demo {
     type: sum
     sql: ${user_id} ;;
     #value_format_name: "conditional_dollar_with_one_decimal"
@@ -30,7 +30,26 @@ view: orders {
     html: @{value_format_liquid_currency} ;;
   }
 
+  parameter: test {
+    type: unquoted
+    allowed_value: {
+      label: "-5s"
+      value: "mi_maas_usd_neg_5"
+    }
+    allowed_value: {
+      label: "-1s"
+      value: "mi_maas_usd_neg_1"
+    }
+  }
+  dimension: test_1 {
+    sql:
+    {% if test._parameter_value == 'mi_maas_usd_neg_5' %}
+    ${user_id}
+    {% elsif test._parameter_value == 'mi_maas_usd_neg_1' %}
+${id}
+    {% endif %};;
 
+  }
   measure: count {
     type: count
     value_format_name: conditional_dollar_with_one_decimal_1
