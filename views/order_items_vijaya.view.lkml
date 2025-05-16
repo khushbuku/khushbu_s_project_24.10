@@ -17,6 +17,10 @@ view: order_items_vijaya {
     # hidden: yes
     sql: ${TABLE}.order_id ;;
   }
+  dimension: concate {
+    type: string
+    sql: concat("Souvik ", "Ghosh") ;;
+  }
   dimension_group: returned {
     type: time
     timeframes: [raw, time, date, week, month, quarter, year]
